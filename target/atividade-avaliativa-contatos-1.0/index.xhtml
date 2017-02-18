@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="formulario">
+            <p:fieldset legend="Contatos">
+                <p:panelGrid columns="2">
+                    <h:outputLabel value="Nome:"/>
+                    <p:inputText value="#{controladorDeContatos.contato.nome}"/>
+                    <h:outputLabel value="Telefone:"/>
+                    <p:inputMask value="#{controladorDeContatos.contato.telefone}" mask="(99) 9999-9999"/>
+                </p:panelGrid>
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <p:commandButton value="Cadastrar" action="#{controladorDeContatos.cadastrar()}" update=":formulario"/>
+                        <p:commandButton value="Listar" action="#{controladorDeContatos.listar()}" update=":formulario"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
+                <p:dataTable var="contato" value="#{controladorDeContatos.contatos}">
+                    <f:facet name="header">
+                        Lista Contatos
+                    </f:facet>
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{contato.nome}"/>
+                    </p:column>
+                    <p:column headerText="Telefone">
+                        <h:outputText value="#{contato.telefone}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Editar" action="#{controladorDeContatos.editar(contato)}" update=":formulario"/>
+                        <p:commandButton value="Excluir" action="#{controladorDeContatos.excluir(contato)}" update=":formulario"/>
+                    </p:column>
+                </p:dataTable>
+                <br></br> 
+            </p:fieldset>
+        </h:form>
+        <h:form id="formulario2">
+            <h:outputLabel value="Nome: "/>
+            <p:inputText value="#{controladorDeContatos.nome}"/>
+            <p:commandButton value="Pesquisar" action="#{controladorDeContatos.exibir()}" update=":formulario2"  onclick="PF('dlg2').show();"/>
+        </h:form>
+        <!--        <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">-->
+        <h:outputText value="Nome: "/>
+        <h:outputText value="#{controladorDeContatos.pesquisa.nome}"/>
+        <br></br>
+        <h:outputText value="Telefone: "/>
+        <h:outputText value="#{controladorDeContatos.pesquisa.telefone}"/>
+        <!--        </p:dialog>-->
+    </h:body>
+</html>
+
