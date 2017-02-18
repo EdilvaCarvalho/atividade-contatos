@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class Conexao {
 
     private static Connection conexao;
-    private static final String URL = "jdbc:postgresql://0.0.0.0:5431/atividade-avaliativa-contatos";
+    private static final String URL = "jdbc:postgresql://0.0.0.0:5433/atividade-avaliativa-contatos";
     private static final String USER = "postgres";
     private static final String PASSWORD = "postgres";
     private static final String DRIVER = "org.postgresql.Driver";
